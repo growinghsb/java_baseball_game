@@ -2,9 +2,7 @@ package baseball;
 
 import utils.RandomUtils;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 import static java.lang.String.valueOf;
 import static utils.RandomUtils.*;
@@ -27,27 +25,41 @@ public class Application {
         final Scanner scanner = new Scanner(System.in);
         // TODO 구현 진행
         boolean finish = true;
-
         while (finish) {
             char[] randomValue = valueOf(nextInt(99, 999)).toCharArray();
-            check(randomValue, inputNumberConversion(inputNumber(scanner)));
+            compare(randomValue, inputNumberConversion(numberInput(scanner)));
         }
     }
 
-    public static Integer inputNumber(Scanner scanner) {
+    public static Integer numberInput(Scanner scanner) {
         System.out.println("숫자를 입력해주세요.");
         return scanner.nextInt();
     }
 
-    public static String check(char[] randomValue, char[] inputValue) {
+    public static String compare(char[] randomValue, char[] inputValue) {
+        Map<String, Integer> score = new HashMap<>();
 
+        for (int i = 0; i < randomValue.length; i++) {
+            if (randomValue[i] == inputValue[i]) {
+                keyCheck(score, "Strike");
+            }
+        }
+        return ""; // 임시방편
+    }
+
+    public static void keyCheck(Map<String, Integer> board, String key) {
+        if (board.containsKey(key)) {
+            board.put(key, board.get(key) + 1);
+            return;
+        }
+        board.put(key, 1);
     }
 
     public static char[] inputNumberConversion(Integer inputValue) {
         return valueOf(inputValue).toCharArray();
     }
 
-    public static boolean endAnswre(Scanner scanner) {
+    public static boolean finishQuestion(Scanner scanner) {
         System.out.println("3개의 숫자를 모두 맞추셨습니다!! 게임종료.\n게임을 새로 시작 1, 종료 2");
         if (scanner.nextInt() == 1) {
             return true;

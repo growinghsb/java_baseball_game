@@ -3,6 +3,10 @@ package baseball;
 import org.junit.jupiter.api.Test;
 import utils.RandomUtils;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import static baseball.Application.*;
 import static org.assertj.core.api.Assertions.assertThat;
 import static utils.RandomUtils.*;
 
@@ -24,7 +28,7 @@ class ApplicationTest {
     public void 숫자_변환_테스트() {
         //given
         //when
-        char[] conversion = Application.inputNumberConversion(100);
+        char[] conversion = inputNumberConversion(100);
         //than
         assertThat(conversion).isNotNull();
         assertThat(conversion).isNotEmpty();
@@ -32,4 +36,26 @@ class ApplicationTest {
         assertThat(conversion.length).isEqualTo(3);
 
     }
+    
+   @Test
+   public void 맵_키_체크_테스트() {
+       //given
+       Map<String, Integer> map1 = new HashMap<>();
+       Map<String, Integer> map2 = new HashMap<>();
+
+       //when
+       keyCheck(map1, "test");
+
+       keyCheck(map2, "test");
+       keyCheck(map2, "test");
+
+       //than
+       assertThat(map1).isNotEmpty();
+       assertThat(map1.size()).isEqualTo(1);
+       assertThat(map1.containsKey("test")).isTrue();
+       assertThat(map1.get("test")).isEqualTo(1);
+
+       assertThat(map2.get("test")).isEqualTo(2);
+
+   }
 }
