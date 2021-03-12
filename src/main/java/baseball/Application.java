@@ -2,7 +2,12 @@ package baseball;
 
 import utils.RandomUtils;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
+
+import static java.lang.String.valueOf;
+import static utils.RandomUtils.*;
 
 /**
  * 구현 순서
@@ -21,18 +26,32 @@ public class Application {
     public static void main(String[] args) {
         final Scanner scanner = new Scanner(System.in);
         // TODO 구현 진행
-        int randomValue = RandomUtils.nextInt(100, 999);
+        boolean finish = true;
 
-        int inputNumber = inputNumber(scanner);
+        while (finish) {
+            char[] randomValue = valueOf(nextInt(99, 999)).toCharArray();
+            check(randomValue, inputNumberConversion(inputNumber(scanner)));
+        }
+    }
 
+    public static Integer inputNumber(Scanner scanner) {
+        System.out.println("숫자를 입력해주세요.");
+        return scanner.nextInt();
+    }
 
-
-
+    public static String check(char[] randomValue, char[] inputValue) {
 
     }
 
-    public static int inputNumber(Scanner scanner) {
-        System.out.println("숫자를 입력해주세요.");
-        return scanner.nextInt();
+    public static char[] inputNumberConversion(Integer inputValue) {
+        return valueOf(inputValue).toCharArray();
+    }
+
+    public static boolean endAnswre(Scanner scanner) {
+        System.out.println("3개의 숫자를 모두 맞추셨습니다!! 게임종료.\n게임을 새로 시작 1, 종료 2");
+        if (scanner.nextInt() == 1) {
+            return true;
+        }
+        return false;
     }
 }
