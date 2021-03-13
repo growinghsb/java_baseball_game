@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 import utils.RandomUtils;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import static baseball.Application.*;
@@ -28,16 +29,16 @@ class ApplicationTest {
     public void 숫자_변환_테스트() {
         //given
         //when
-        char[] conversion = inputNumberConversion(100);
+         List<String> conversion = inputNumberConversion(100);
         //than
         assertThat(conversion).isNotNull();
         assertThat(conversion).isNotEmpty();
-        assertThat(conversion.length).isNotZero();
-        assertThat(conversion.length).isEqualTo(3);
+        assertThat(conversion.size()).isNotZero();
+        assertThat(conversion.size()).isEqualTo(3);
 
     }
     
-   @Test
+  /* @Test
    public void 맵_키_체크_테스트() {
        //given
        Map<String, Integer> map1 = new HashMap<>();
@@ -57,5 +58,5 @@ class ApplicationTest {
 
        assertThat(map2.get("test")).isEqualTo(2);
 
-   }
+   }*/
 }

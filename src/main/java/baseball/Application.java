@@ -1,11 +1,8 @@
 package baseball;
 
-import utils.RandomUtils;
-
 import java.util.*;
 
-import static java.lang.String.valueOf;
-import static utils.RandomUtils.*;
+import static utils.RandomUtils.nextInt;
 
 /**
  * 구현 순서
@@ -26,37 +23,18 @@ public class Application {
         // TODO 구현 진행
         boolean finish = true;
         while (finish) {
-            char[] randomValue = valueOf(nextInt(99, 999)).toCharArray();
-            compare(randomValue, inputNumberConversion(numberInput(scanner)));
+            List<String> randomValue = inputNumberConversion(nextInt(99, 999));
+
         }
     }
-
     public static Integer numberInput(Scanner scanner) {
         System.out.println("숫자를 입력해주세요.");
         return scanner.nextInt();
     }
 
-    public static String compare(char[] randomValue, char[] inputValue) {
-        Map<String, Integer> score = new HashMap<>();
 
-        for (int i = 0; i < randomValue.length; i++) {
-            if (randomValue[i] == inputValue[i]) {
-                keyCheck(score, "Strike");
-            }
-        }
-        return ""; // 임시방편
-    }
-
-    public static void keyCheck(Map<String, Integer> board, String key) {
-        if (board.containsKey(key)) {
-            board.put(key, board.get(key) + 1);
-            return;
-        }
-        board.put(key, 1);
-    }
-
-    public static char[] inputNumberConversion(Integer inputValue) {
-        return valueOf(inputValue).toCharArray();
+    public static List<String> inputNumberConversion(Integer inputValue) {
+        return new ArrayList<>(Arrays.asList(inputValue.toString().split("")));
     }
 
     public static boolean finishQuestion(Scanner scanner) {
