@@ -23,39 +23,41 @@ public class Application {
         final Scanner scanner = new Scanner(System.in);
         // TODO 구현 진행
         boolean finish = true;
+        List<String> randomValueCopy = new ArrayList<>();
+        List<String> inputNumber;
         while (finish) {
             List<String> randomValue = inputNumberConversion(nextInt(99, 999));
-            List<String> randomValueCopy = new ArrayList<>();
+
             do {
                 randomValueCopy.clear();
                 randomValueCopy.addAll(randomValue);
-
-            } while (output(scoreCheck(numberCompare(randomValueCopy, inputNumberConversion(numberInput(scanner))))));
+                inputNumber = inputNumberConversion(numberInput(scanner));
+                isStrike(randomValueCopy, inputNumber);
+                isBall(randomValueCopy, inputNumber);
+            } while (printResult(scoreCheck(inputNumber)));
 
             finish = finishQuestion(scanner);
         }
     }
 
-    public static List<String> numberCompare(List<String> randomValueCopy, List<String> inputValue) {
+    public static void isStrike(List<String> randomValueCopy, List<String> inputValue) {
         for (int i = 0; i < randomValueCopy.size(); i++) {
             if (randomValueCopy.get(i).equals(inputValue.get(i))) {
                 randomValueCopy.set(i, "S");
                 inputValue.set(i, "S");
             }
         }
-        ballCheck(randomValueCopy, inputValue);
-        return inputValue;
     }
 
-    public static void ballCheck(List<String> randomValueCopy, List<String> inputValue) {
+    public static void isBall(List<String> randomValueCopy, List<String> inputValue) {
         for (int i = 0; i < randomValueCopy.size(); i++) {
-            if (compare(randomValueCopy.get(i), inputValue)) {
+            if (numberCompare(randomValueCopy.get(i), inputValue)) {
                 randomValueCopy.set(i, "B");
             }
         }
     }
 
-    public static boolean compare(String randomValue, List<String> inputValue) {
+    public static boolean numberCompare(String randomValue, List<String> inputValue) {
         for (int j = 0; j < inputValue.size(); j++) {
             if (randomValue.equals(inputValue.get(j)) && !randomValue.equals("S")) {
                 inputValue.set(j, "B");
@@ -80,7 +82,7 @@ public class Application {
         return scoreBoard;
     }
 
-    public static boolean output(Map<String, Integer> scoreBoard) {
+    public static boolean printResult(Map<String, Integer> scoreBoard) {
         if (scoreBoard.get("Strike") == 0 && scoreBoard.get("Ball") == 0) {
             System.out.println("Nothing");
             return true;
@@ -102,6 +104,7 @@ public class Application {
     }
 
     public static Integer numberInput(Scanner scanner) {
+        System.out.println();
         System.out.println("숫자를 입력해주세요.");
         return scanner.nextInt();
     }
