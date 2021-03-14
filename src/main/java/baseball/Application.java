@@ -2,6 +2,7 @@ package baseball;
 
 import java.util.*;
 
+import static java.util.Arrays.*;
 import static utils.RandomUtils.nextInt;
 
 /**
@@ -24,9 +25,82 @@ public class Application {
         boolean finish = true;
         while (finish) {
             List<String> randomValue = inputNumberConversion(nextInt(99, 999));
+            List<String> randomValueCopy = new ArrayList<>();
+            do {
+                randomValueCopy.clear();
+                randomValueCopy.addAll(randomValue);
 
+            } while (output(scoreCheck(numberCompare(randomValueCopy, inputNumberConversion(numberInput(scanner))))));
+
+            finish = finishQuestion(scanner);
         }
     }
+
+    public static List<String> numberCompare(List<String> randomValueCopy, List<String> inputValue) {
+        for (int i = 0; i < randomValueCopy.size(); i++) {
+            if (randomValueCopy.get(i).equals(inputValue.get(i))) {
+                randomValueCopy.set(i, "S");
+                inputValue.set(i, "S");
+            }
+        }
+        ballCheck(randomValueCopy, inputValue);
+        return inputValue;
+    }
+
+    public static void ballCheck(List<String> randomValueCopy, List<String> inputValue) {
+        for (int i = 0; i < randomValueCopy.size(); i++) {
+            if (compare(randomValueCopy.get(i), inputValue)) {
+                randomValueCopy.set(i, "B");
+            }
+        }
+    }
+
+    public static boolean compare(String randomValue, List<String> inputValue) {
+        for (int j = 0; j < inputValue.size(); j++) {
+            if (randomValue.equals(inputValue.get(j)) && !randomValue.equals("S")) {
+                inputValue.set(j, "B");
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static Map<String, Integer> scoreCheck(List<String> score) {
+        Map<String, Integer> scoreBoard = new HashMap<>();
+        scoreBoard.put("Strike", 0);
+        scoreBoard.put("Ball", 0);
+        for (String s : score) {
+            if (s.equals("S")) {
+                scoreBoard.put("Strike", scoreBoard.get("Strike") + 1);
+            }
+            if (s.equals("B")) {
+                scoreBoard.put("Ball", scoreBoard.get("Ball") + 1);
+            }
+        }
+        return scoreBoard;
+    }
+
+    public static boolean output(Map<String, Integer> scoreBoard) {
+        if (scoreBoard.get("Strike") == 0 && scoreBoard.get("Ball") == 0) {
+            System.out.println("Nothing");
+            return true;
+        }
+        if (scoreBoard.get("Ball") == 0 && scoreBoard.get("Strike") != 3) {
+            System.out.println(scoreBoard.get("Strike") + " 스트라이크!");
+            return true;
+        }
+        if (scoreBoard.get("Strike") == 0) {
+            System.out.println(scoreBoard.get("Ball") + " 볼!");
+            return true;
+        }
+        if (scoreBoard.get("Strike") != 0 && scoreBoard.get("Ball") != 0) {
+            System.out.println(scoreBoard.get("Strike") + " 스트라이크! " + scoreBoard.get("Ball") + " 볼!");
+            return true;
+        }
+
+        return false;
+    }
+
     public static Integer numberInput(Scanner scanner) {
         System.out.println("숫자를 입력해주세요.");
         return scanner.nextInt();
@@ -34,7 +108,7 @@ public class Application {
 
 
     public static List<String> inputNumberConversion(Integer inputValue) {
-        return new ArrayList<>(Arrays.asList(inputValue.toString().split("")));
+        return new ArrayList<>(asList(inputValue.toString().split("")));
     }
 
     public static boolean finishQuestion(Scanner scanner) {
