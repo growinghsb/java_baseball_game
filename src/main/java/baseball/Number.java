@@ -6,7 +6,7 @@ import static java.lang.String.*;
 
 public class Number {
 
-    private final int DIGIT = 3;
+    private final int NUMBER_DIGIT = 3;
     private final int RANDOM_NUMBER;
 
     public Number(int RANDOM_NUMBER) {
@@ -18,13 +18,11 @@ public class Number {
     }
 
     public int isBall(int inputNumber, int index) {
-        int count = 0;
-        for (int i = 0; i < DIGIT; i++) {
+        for (int i = 0; i < NUMBER_DIGIT; i++) {
             if (valueOf(inputNumber).charAt(index) == valueOf(RANDOM_NUMBER).charAt(i)) {
-                count++;
+                return 1;
             }
         }
-        return count;
+        return 0;
     }
-
 }
