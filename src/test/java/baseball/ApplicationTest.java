@@ -37,26 +37,16 @@ class ApplicationTest {
         assertThat(conversion.size()).isEqualTo(3);
 
     }
-    
-  /* @Test
-   public void 맵_키_체크_테스트() {
-       //given
-       Map<String, Integer> map1 = new HashMap<>();
-       Map<String, Integer> map2 = new HashMap<>();
 
-       //when
-       keyCheck(map1, "test");
+    @Test
+    public void isStrike_Test() {
+        //given
+        Number number = new Number(123);
 
-       keyCheck(map2, "test");
-       keyCheck(map2, "test");
+        //when
+        boolean strike = number.isStrike(1, 0);
 
-       //than
-       assertThat(map1).isNotEmpty();
-       assertThat(map1.size()).isEqualTo(1);
-       assertThat(map1.containsKey("test")).isTrue();
-       assertThat(map1.get("test")).isEqualTo(1);
-
-       assertThat(map2.get("test")).isEqualTo(2);
-
-   }*/
+        //than
+        assertThat(strike).isTrue();
+    }
 }
