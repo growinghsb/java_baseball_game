@@ -49,4 +49,17 @@ class ApplicationTest {
         //than
         assertThat(strike).isTrue();
     }
+
+    @Test
+    public void isBall_Test() {
+        //given
+        Number number = new Number(123);
+
+        //when
+        int ball = number.isBall(234, 0);
+
+        //than
+        assertThat(ball).isEqualTo(1);
+
+    }
 }
