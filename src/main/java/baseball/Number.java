@@ -17,12 +17,12 @@ public class Number {
         return valueOf(inputNumber).charAt(index) == valueOf(RANDOM_NUMBER).charAt(index);
     }
 
-    public int isBall(int inputNumber, int index) {
+    public boolean isBall(int inputNumber, int index) {
         for (int i = 0; i < NUMBER_DIGIT; i++) {
             if (valueOf(inputNumber).charAt(index) == valueOf(RANDOM_NUMBER).charAt(i)) {
-                return 1;
+                return true;
             }
         }
-        return 0;
+        return false;
     }
 }

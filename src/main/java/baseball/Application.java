@@ -24,7 +24,7 @@ public class Application {
         // TODO 구현 진행
 
         Play playBall = new Play(scanner);
-        playBall.play();
+        playBall.start();
 
         boolean finish = true;
         List<String> randomValueCopy = new ArrayList<>();

@@ -56,10 +56,10 @@ class ApplicationTest {
         Number number = new Number(123);
 
         //when
-        int ball = number.isBall(234, 0);
+        boolean ball = number.isBall(234, 0);
 
         //than
-        assertThat(ball).isEqualTo(1);
+        assertThat(ball).isEqualTo(true);
 
     }
 }
