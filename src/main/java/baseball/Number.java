@@ -1,10 +1,9 @@
 package baseball;
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
-import static java.lang.String.*;
+import static java.lang.String.valueOf;
 
 public class Number {
 
@@ -15,6 +14,23 @@ public class Number {
     public Number(int RANDOM_NUMBER) {
         this.RANDOM_NUMBER = RANDOM_NUMBER;
 
+    }
+
+    public ScoreBoard inputValueCompare(char[] l_inputNumber) {
+        this.inputNumber = l_inputNumber;
+        Map<String, Integer> score = new HashMap<>();
+        for (int i = 0; i < inputNumber.length; i++) {
+            if (isStrike(i)) {
+                scoreInput(score, "Strike");
+                strikeNumberDelete(inputNumber[i]);
+            }
+        }
+        for (char c : inputNumber) {
+            if (isBall(c)) {
+                scoreInput(score, "Ball");
+            }
+        }
+        return new ScoreBoard(score);
     }
 
     private boolean isStrike(int index) {
@@ -30,26 +46,12 @@ public class Number {
         return false;
     }
 
-    public ScoreBoard inputValueCompare(char[] l_inputNumber) {
-        this.inputNumber = l_inputNumber;
-        Map<String, Integer> score = getScore();
-        for (int i = 0; i < inputNumber.length; i++) {
-            if (isStrike(i)) {
-                scoreInput(score, "Strike");
-                strikeNumberDelete(inputNumber[i]);
-            }
+    private Integer scoreInput(Map<String, Integer> scoreBoard, String key) {
+        if (scoreBoard.containsKey(key)) {
+            return scoreBoard.put(key, scoreBoard.get(key) + 1);
         }
-        for (char c : inputNumber) {
-            if (isBall(c)) {
-                scoreInput(score, "Ball");
-            }
-        }
-        return new ScoreBoard(score);
-    }
 
-
-    private void scoreInput(Map<String, Integer> scoreBoard, String key) {
-        scoreBoard.put(key, scoreBoard.get(key) + 1);
+        return scoreBoard.put(key, 1);
     }
 
     private void strikeNumberDelete(char number) {
@@ -58,12 +60,5 @@ public class Number {
                 inputNumber[i] = '-';
             }
         }
-    }
-
-    private Map<String, Integer> getScore() {
-        Map<String, Integer> score = new HashMap<>();
-        score.put("Strike", 0);
-        score.put("Ball", 0);
-        return score;
     }
 }

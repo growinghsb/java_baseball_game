@@ -10,21 +10,20 @@ public class ScoreBoard {
 
     public ScoreBoard(Map<String, Integer> scoreBoard) {
         this.scoreBoard = scoreBoard;
-
     }
 
     public boolean printScore() {
-        if (scoreBoard.get("Strike") == HOME_RUN) {
-            System.out.println("HOME_RUN");
-            return false;
-        }
-        if (scoreBoard.get("Strike") == 0 && scoreBoard.get("Ball") == 0) {
+        if (scoreBoard.isEmpty()) {
             System.out.println("nothing");
             return true;
         }
         StringBuilder scorePrint = new StringBuilder();
         for (String s : scoreBoard.keySet()) {
             scorePrint.append(scoreBoard.get(s)).append(" ").append(s).append(" ");
+        }
+        if (scoreBoard.containsKey("Strike") && scoreBoard.get("Strike") == HOME_RUN) {
+            System.out.println("HOME_RUN!");
+            return false;
         }
         System.out.println(scorePrint);
         return true;
@@ -37,6 +36,4 @@ public class ScoreBoard {
         }
         return false;
     }
-
-
 }

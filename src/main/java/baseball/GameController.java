@@ -1,8 +1,6 @@
 package baseball;
 
-import utils.RandomUtils;
-
-import static utils.RandomUtils.*;
+import static utils.RandomUtils.nextInt;
 
 public class GameController {
 
