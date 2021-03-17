@@ -1,10 +1,5 @@
 package baseball;
 
-import java.util.*;
-
-import static java.util.Arrays.*;
-import static utils.RandomUtils.nextInt;
-
 /**
  * 구현 순서
  * 1. 랜덤값 출력하기 - 테스트
@@ -20,13 +15,13 @@ import static utils.RandomUtils.nextInt;
 
 public class Application {
     public static void main(String[] args) {
-        final Scanner scanner = new Scanner(System.in);
+
         // TODO 구현 진행
 
-        Play playBall = new Play(scanner);
-        playBall.start();
+         GameController gameController = new GameController(new Input());
+         gameController.start();
 
-        boolean finish = true;
+       /* boolean finish = true;
         List<String> randomValueCopy = new ArrayList<>();
         List<String> inputNumber;
         while (finish) {
@@ -124,5 +119,6 @@ public class Application {
             return true;
         }
         return false;
+    }*/
     }
 }
