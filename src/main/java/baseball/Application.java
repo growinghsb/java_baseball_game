@@ -1,5 +1,7 @@
+/*
 package baseball;
 
+*/
 /**
  * 구현 순서
  * 1. 랜덤값 출력하기 - 테스트
@@ -11,7 +13,8 @@ package baseball;
  * 4. 3자리 모두 맞았을 때 홈런~ 게임 종료 구현 - 테스트
  * 5. 게임 종료 후 다시 시작하거나 종료 하거나 선택 구현 - 테스트
  * 6. 점진적 리팩토링 진행
- */
+ *//*
+
 
 public class Application {
     public static void main(String[] args) {
@@ -21,7 +24,8 @@ public class Application {
          GameController gameController = new GameController(new Input());
          gameController.start();
 
-       /* boolean finish = true;
+       */
+/* boolean finish = true;
         List<String> randomValueCopy = new ArrayList<>();
         List<String> inputNumber;
         while (finish) {
@@ -119,6 +123,8 @@ public class Application {
             return true;
         }
         return false;
-    }*/
+    }*//*
+
     }
 }
+*/
