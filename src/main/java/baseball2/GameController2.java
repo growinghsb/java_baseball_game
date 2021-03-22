@@ -8,18 +8,17 @@ public class GameController2 {
     private final Number number;
     private final Print print;
 
-    private GameController2() {
+    public GameController2() {
         this.input = new Input();
         this.number = new Number(RandomUtils.nextInt(99, 999));
         this.print = new Print();
     }
 
-    public static void start() {
-        GameController2 controller2 = new GameController2();
+    public void start() {
 
     }
 
     private void play() {
-
+        number.compareIsNumber(input.inputNumber());
     }
 }
